@@ -17,6 +17,7 @@ $result = $conn->query($query);
 <!DOCTYPE html>
 <html lang="id">
 <?php require_once LAYOUT_PATH . '/head.php'; ?>
+<link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
 
 
 <body class="d-flex flex-column min-vh-100">
@@ -28,29 +29,23 @@ $result = $conn->query($query);
             <div class="container-fluid py-4">
 
                 <!-- Judul -->
-                <div class="mb-3">
+                <div class="mb-3 d-flex justify-content-between align-items-center">
                     <h4 class="fw-bold mb-1">Manajemen User</h4>
-                </div>
-
-                <!-- Card Table -->
-                <div class="card shadow-sm border-0">
-                    <div class="card-body">
-
-                        <!-- Tombol Tambah di kanan atas sejajar search -->
-                        <div class="d-flex justify-content-end mb-2">
-                            <div id="tombolTambahUser">
+                    <div id="tombolTambahUser">
                                 <button class="btn btn-primary rounded-pill shadow-sm d-flex align-items-center gap-2"
                                     data-bs-toggle="modal" data-bs-target="#modalTambah">
                                     <i class="fe fe-user-plus"></i> Tambah User
                                 </button>
                             </div>
-                        </div>
+                </div>
 
-
-
+                <!-- Card Table -->
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
                         <!-- Tabel -->
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover align-middle mb-0" id="tabel-user">
+                            <table class="table table-bordered table-hover align-middle mb-0 table-striped" id="tabel-user">
+
                                 <thead class="table-primary">
                                     <tr>
                                         <th style="width: 50px;">No</th>
@@ -100,7 +95,6 @@ $result = $conn->query($query);
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
 
