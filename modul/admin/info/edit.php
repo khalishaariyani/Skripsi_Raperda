@@ -103,8 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <main class="main-content app-content mt-0">
             <div class="container-fluid mt-4">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0"><?= htmlspecialchars($pageTitle) ?></h5>
                     </div>
 

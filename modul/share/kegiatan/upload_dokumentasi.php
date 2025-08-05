@@ -60,8 +60,8 @@ foreach ($files['name'] as $i => $original) {
 }
 
 if ($berhasil > 0) {
-    header("Location: dokumentasi.php?msg=uploaded&count=$berhasil");
+    header("Location: dokumentasi.php?msg=upload_succes&count=$berhasil");
 } else {
-    header("Location: dokumentasi.php?msg=upload_failed");
+    header("Location: dokumentasi.php?msg=upload_error");
 }
 exit;

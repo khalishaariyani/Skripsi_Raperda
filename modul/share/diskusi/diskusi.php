@@ -182,8 +182,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                     </a>
                                                 <?php endif; ?>
                                                 <?php if ($role === 'admin'): ?>
-                                                    <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-outline-danger rounded-circle shadow-sm"
-                                                        onclick="return confirm('Yakin ingin menghapus data ini?')" title="Hapus">
+                                                    <a href="javascript:void(0)" onclick="confirmDelete('delete.php?id=<?= $row['id'] ?>')"
+                                                    class="btn btn-sm btn-outline-danger rounded-circle shadow-sm" title="Hapus">
                                                         <i class="fe fe-trash"></i>
                                                     </a>
                                                 <?php endif; ?>

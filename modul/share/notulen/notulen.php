@@ -80,9 +80,9 @@ $result = $conn->query($query);
                                                     <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-outline-warning rounded-circle shadow-sm" title="Edit">
                                                         <i class="fe fe-edit"></i>
                                                     </a>
-                                                    <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-outline-danger rounded-circle shadow-sm"
-                                                       onclick="return confirm('Yakin ingin menghapus data ini?')" title="Hapus">
-                                                        <i class="fe fe-trash"></i>
+                                                    <a href="javascript:void(0)" onclick="confirmDelete('delete.php?id=<?= $row['id'] ?>')"
+                                                        class="btn btn-sm btn-outline-danger rounded-circle shadow-sm" title="Hapus">
+                                                            <i class="fe fe-trash"></i>
                                                     </a>
                                                 </div>
                                             </td>

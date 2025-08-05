@@ -98,8 +98,8 @@ $result = $conn->query("SELECT * FROM informasi ORDER BY tanggal DESC") or die($
                                                     <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-outline-warning" title="Edit">
                                                         <i class="fe fe-edit"></i>
                                                     </a>
-                                                    <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-outline-danger"
-                                                       onclick="return confirm('Yakin ingin menghapus informasi ini?')" title="Hapus">
+                                                    <a href="javascript:void(0)" onclick="confirmDelete('delete.php?id=<?= $row['id'] ?>')"
+                                                    class="btn btn-sm btn-outline-danger rounded-circle shadow-sm" title="Hapus">
                                                         <i class="fe fe-trash"></i>
                                                     </a>
                                                 </div>

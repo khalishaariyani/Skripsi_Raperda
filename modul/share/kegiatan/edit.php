@@ -96,10 +96,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php require_once LAYOUT_PATH . '/sidebar.php'; ?>
 
         <main class="main-content app-content mt-0">
-            <div class="container-fluid mt-4">
-                <div class="card">
+            <div class="container-fluid py-4 mt-4">
+                <div class="card shadow-sm">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5>Edit Dokumentasi</h5>
+                        <h5>Edit Data Dokumentasi</h5>
                     </div>
                     <div class="card-body">
                         <form method="POST" enctype="multipart/form-data">

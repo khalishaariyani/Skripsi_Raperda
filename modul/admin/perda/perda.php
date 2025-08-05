@@ -76,8 +76,9 @@ $perdas = $conn->query("SELECT * FROM perda ORDER BY tanggal_masuk DESC");
                                                 <a href="edit.php?id=<?= $row['idPerda'] ?>" class="btn btn-sm btn-outline-warning rounded-circle shadow-sm" title="Edit">
                                                     <i class="fe fe-edit"></i>
                                                 </a>
-                                                <a href="delete.php?id=<?= $row['idPerda'] ?>" onclick="return confirm('Yakin hapus?')" class="btn btn-sm btn-outline-danger rounded-circle shadow-sm" title="Hapus">
-                                                    <i class="fe fe-trash"></i>
+                                                <a href="javascript:void(0)" onclick="confirmDelete('delete.php?id=<?= $row['id'] ?>')"
+                                                    class="btn btn-sm btn-outline-danger rounded-circle shadow-sm" title="Hapus">
+                                                        <i class="fe fe-trash"></i>
                                                 </a>
                                                 <a href="cetak.php?idPerda=<?= $row['idPerda'] ?>" target="_blank" class="btn btn-sm btn-outline-secondary rounded-circle shadow-sm" title="Cetak">
                                                     <i class="fe fe-printer"></i>

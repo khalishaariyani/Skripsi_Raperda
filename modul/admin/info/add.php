@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="container-fluid mt-4">
                 <div class="card">
                     <div class="card shadow-sm">
-                        <div class="px-4 pt-4 pb-2" style="background: #eceff6; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
+                        <div class="px-4 pt-2 pb-2" style="background: #eceff6; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
                             <h2 class="mb-0" style="font-size:1.3rem; font-weight:700; color:#222; line-height:1;">
                                 Tambah Informasi Rapat
                             </h2>

@@ -86,9 +86,8 @@ $result = $conn->query($query) or die($conn->error);
                                                         class="btn btn-sm btn-warning mb-1">
                                                         <i class="fe fe-edit"></i>
                                                     </a>
-                                                    <a href="delete.php?id=<?= htmlspecialchars($row['id_usulan']) ?>"
-                                                        class="btn btn-sm btn-danger mb-1"
-                                                        onclick="return confirm('Yakin ingin menghapus dokumen ini?');">
+                                                    <a href="javascript:void(0)" onclick="confirmDelete('delete.php?id=<?= $row['id_usulan'] ?>')"
+                                                    class="btn btn-sm btn-outline-danger rounded-circle shadow-sm" title="Hapus">
                                                         <i class="fe fe-trash"></i>
                                                     </a>
                                                 <?php else: ?>

@@ -56,13 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
             text: (obj) => getInvalidText(obj),
         },
         not_found: {
-        icon: "error",
-        title: "Tidak Ditemukan",
-        text: (obj) => `${capitalize(getObjName(obj))} tidak ditemukan atau tidak tersedia.`,
+            icon: "error",
+            title: "Tidak Ditemukan",
+            text: (obj) => `${capitalize(getObjName(obj))} tidak ditemukan atau tidak tersedia.`,
+            },
+        upload_success: {
+            icon: "success",
+            title: "Upload Berhasil",
+            text: (obj) => `Berkas untuk ${getObjName(obj)} berhasil diunggah.`,
         },
-        uploaderror: {
-        icon: "error",
-        title: "Upload Gagal",
+        upload_error: {
+            icon: "error",
+            title: "Upload Gagal",
             text: (obj) => `Gagal mengunggah berkas untuk ${getObjName(obj)}. Pastikan format dan ukuran file sesuai.`,
         },
         fk_blocked: {

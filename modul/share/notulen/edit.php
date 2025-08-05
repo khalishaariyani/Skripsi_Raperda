@@ -76,8 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card shadow-sm">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0"><?= $pageTitle ?></h5>
-
                     </div>
+                    
                     <div class="card-body">
                         <?php if (!empty($error)): ?>
                             <div class="alert alert-danger"><?= $error ?></div>

@@ -80,9 +80,8 @@ $result = $conn->query($query);
                                                         <i class="fe fe-edit"></i>
                                                     </a>
                                                     <?php if ($sessionId != $row['id']): ?>
-                                                        <a href="<?= BASE_URL ?>/modul/admin/user/delete.php?id=<?= $row['id'] ?>"
-                                                            class="btn btn-sm btn-outline-danger rounded-circle shadow-sm" title="Hapus"
-                                                            onclick="return confirm('Yakin ingin menghapus user ini?')">
+                                                        <a href="javascript:void(0)" onclick="confirmDelete('delete.php?id=<?= $row['id'] ?>')"
+                                                        class="btn btn-sm btn-outline-danger rounded-circle shadow-sm" title="Hapus">
                                                             <i class="fe fe-trash"></i>
                                                         </a>
                                                     <?php else: ?>

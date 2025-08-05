@@ -51,10 +51,11 @@ if (move_uploaded_file($tmpPath, $savePath)) {
     $stmt->bind_param("issi", $id_user, $newName, $deskripsi, $judul_rapat_id);
 
     if ($stmt->execute()) {
-        header("Location: usulan.php?msg=upload_success");
+        header("Location: usulan.php?msg=upload_success&obj=usulan");
         exit;
     } else {
-        die("❌ Gagal menyimpan ke database.");
+        header("Location: usulan.php?msg=upload_error&obj=usulan");
+        exit;
     }
 } else {
     die("❌ Gagal memindahkan file.");

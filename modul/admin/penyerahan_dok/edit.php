@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fe fe-save me-1"></i> Simpan Perubahan
                                 </button>
-                            </div>>
+                            </div>
                         </form>
 
                     </div>
