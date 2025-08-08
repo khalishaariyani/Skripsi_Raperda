@@ -1,7 +1,3 @@
-CODINGAN ADD ( UNDANGAN rAPAT )
--> ADA TERDAPAT CARI DAN PILIH INSTANSI TERKAIT
-
-
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/raperda/config/constants.php';
 require_once CONFIG_PATH . '/koneksi.php';

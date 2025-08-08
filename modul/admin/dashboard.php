@@ -37,15 +37,10 @@ while ($row = $query->fetch_assoc()) {
     } elseif ($row['status'] == 'sakit') {
         $sakit = $row['total'];
     }
-
-    
 }
-// Dummy Berita
-$berita = [
-    ["judul" => "Penyusunan Perda Pariwisata", "tanggal" => "10 Juni 2025"],
-    ["judul" => "Evaluasi Program Kesehatan", "tanggal" => "5 Juni 2025"]
-];
 
+// ✅ Query Arsip Rapat
+$arsip = $conn->query("SELECT * FROM arsiprapat ORDER BY tanggal_upload DESC LIMIT 5");
 
 // Informasi Terkini dengan pagination
 $limit = 3;
@@ -118,26 +113,32 @@ $informasi = $conn->query("SELECT * FROM informasi ORDER BY tanggal DESC LIMIT $
                                 <i class="bi bi-people-fill me-2"></i>Status Kehadiran Peserta (<?= date('F Y') ?>)
                             </div>
                             <div class="card-body d-flex flex-column gap-3">
+                                <!-- Hadir -->
                                 <div class="d-flex align-items-center justify-content-between px-2 py-2 rounded-3" style="background: #e7fbe7;">
                                     <span class="d-flex align-items-center">
-                                        <span class="badge bg-success rounded-pill me-2" style="width: 1.5em; height: 1.5em;">
-                                            <i class="bi bi-check-lg"></i></span>
+                                        <span class="badge bg-success rounded-pill me-2" style="width: 1.75em; height: 1.75em; display: flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-check-lg" style="font-size: 1.1em;"></i>
+                                        </span>
                                         <span class="fw-semibold">Hadir</span>
                                     </span>
                                     <span class="fs-5 fw-bold text-success"><?= $hadir ?></span>
                                 </div>
+                                <!-- Izin -->
                                 <div class="d-flex align-items-center justify-content-between px-2 py-2 rounded-3" style="background: #fffbe7;">
                                     <span class="d-flex align-items-center">
-                                        <span class="badge bg-warning rounded-pill me-2" style="width: 1.5em; height: 1.5em;">
-                                            <i class="bi bi-exclamation-lg"></i></span>
+                                        <span class="badge bg-warning rounded-pill me-2" style="width: 1.75em; height: 1.75em; display: flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-exclamation-lg" style="font-size: 1.1em;"></i>
+                                        </span>
                                         <span class="fw-semibold">Izin</span>
                                     </span>
                                     <span class="fs-5 fw-bold text-warning"><?= $izin ?></span>
                                 </div>
+                                <!-- Sakit -->
                                 <div class="d-flex align-items-center justify-content-between px-2 py-2 rounded-3" style="background: #ffe7e7;">
                                     <span class="d-flex align-items-center">
-                                        <span class="badge bg-danger rounded-pill me-2" style="width: 1.5em; height: 1.5em;">
-                                            <i class="bi bi-emoji-frown"></i></span>
+                                        <span class="badge bg-danger rounded-pill me-2" style="width: 1.75em; height: 1.75em; display: flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-emoji-frown" style="font-size: 1.1em;"></i>
+                                        </span>
                                         <span class="fw-semibold">Sakit</span>
                                     </span>
                                     <span class="fs-5 fw-bold text-danger"><?= $sakit ?></span>
@@ -146,24 +147,36 @@ $informasi = $conn->query("SELECT * FROM informasi ORDER BY tanggal DESC LIMIT $
                         </div>
                     </div>
 
-
-                    <!-- Berita Acara -->
+                    <!-- Finalisasi & Berita Acara -->
                     <div class="col-md-4">
                         <div class="card h-100 shadow border-0 rounded-4 bg-gradient" style="background: linear-gradient(135deg, #f8fafc 60%, #ffb347 100%);">
                             <div class="card-header bg-transparent fw-bold border-0 fs-5 text-info">
                                 <i class="bi bi-journal-text me-2"></i>Finalisasi & Berita Acara
                             </div>
                             <div class="card-body">
-                                <?php foreach ($berita as $b): ?>
-                                    <div class="mb-3 p-3 rounded-3" style="background: #fff7e6;">
-                                        <div class="fw-semibold fs-6"><?= $b['judul'] ?></div>
-                                        <div class="text-muted small mb-1"><i class="bi bi-calendar-event me-1"></i><?= $b['tanggal'] ?></div>
-                                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold shadow-sm">Lihat</a>
-                                    </div>
-                                <?php endforeach; ?>
+                                <?php if ($arsip->num_rows > 0): ?>
+                                    <?php while ($r = $arsip->fetch_assoc()): ?>
+                                        <?php
+                                        // Query to get the meeting title based on the related id_rapat
+                                        $jadwalRapatQuery = $conn->query("SELECT judul_rapat FROM jadwalrapat WHERE id = {$r['id_rapat']}");
+                                        $jadwalRapat = $jadwalRapatQuery->fetch_assoc();
+                                        $judulRapat = $jadwalRapat['judul_rapat'] ?? 'Judul Tidak Tersedia';
+                                        ?>
+                                        <div class="mb-3 p-3 rounded-3" style="background: #fff7e6;">
+                                            <div class="fw-semibold fs-6"><?= htmlspecialchars($judulRapat) ?></div>
+                                            <div class="text-muted small mb-1">
+                                                <i class="bi bi-calendar-event me-1"></i><?= date('d M Y', strtotime($r['tanggal_upload'])) ?>
+                                            </div>
+                                            <a href="<?= BASE_URL ?>/uploads/arsip/<?= urlencode($r['file_path']) ?>" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold shadow-sm" target="_blank">Lihat</a>
+                                        </div>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                    <p class="text-muted">Belum ada berita acara.</p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
+
 
                     <!-- Informasi Terkini -->
                     <div class="card shadow border-0 rounded-4 mt-4">
@@ -209,8 +222,6 @@ $informasi = $conn->query("SELECT * FROM informasi ORDER BY tanggal DESC LIMIT $
                             <?php endif; ?>
                         </div>
                     </div>
-
-
 
                     <!-- Kalender -->
                     <div class="col-12">
@@ -300,19 +311,19 @@ $informasi = $conn->query("SELECT * FROM informasi ORDER BY tanggal DESC LIMIT $
                                 eventContent: function(arg) {
                                     return {
                                         html: `
-            <div style="
-              font-size:12px;
-              font-weight:600;
-              line-height:1.2;
-              margin-bottom:2px;
-              word-break: break-word;
-            ">${arg.event.title}</div>
-            <div style="
-              font-size:10px;
-              line-height:1.2;
-              word-break: break-word;
-            ">${arg.event.extendedProps.description}</div>
-          `
+                        <div style="
+                        font-size:12px;
+                        font-weight:600;
+                        line-height:1.2;
+                        margin-bottom:2px;
+                        word-break: break-word;
+                        ">${arg.event.title}</div>
+                        <div style="
+                        font-size:10px;
+                        line-height:1.2;
+                        word-break: break-word;
+                        ">${arg.event.extendedProps.description}</div>
+                    `
                                     };
                                 },
 

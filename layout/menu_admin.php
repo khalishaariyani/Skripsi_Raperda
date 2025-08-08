@@ -42,7 +42,7 @@ function is_uri_match(array $patterns): bool
         <!-- DATA MASTER -->
         <li class="menu-category">Data Master</li>
         <?php
-        $data_master_uri = ['/jadwal/', '/dokumen_rapat/', '/kehadiran/', '/undangan/', '/instansi/', '/kegiatan/',  '/notulen/', '/perda/', '/revisi/', '/penyerahan_dok/'];
+        $data_master_uri = ['/jadwal/', '/dok_usulan/', '/dokumen_rapat/', '/kehadiran/', '/undangan/', '/instansi/', '/kegiatan/',  '/notulen/', '/perda/', '/revisi/', '/penyerahan_dok/'];
         ?>
         <li class="slide has-sub <?= is_uri_match($data_master_uri) ? 'open active' : '' ?>">
             <a href="#" class="menu-item">
@@ -144,7 +144,7 @@ function is_uri_match(array $patterns): bool
                     </a>
                 </li>
                 <li>
-                    <a href="<?= BASE_URL ?>/modul/admin/laporan/laporan_revisi.php" class="menu-item <?= str_contains($current_uri, 'laporan_danrevisi.php') ? 'active' : '' ?>">
+                    <a href="<?= BASE_URL ?>/modul/admin/laporan/laporan_revisi.php" class="menu-item <?= str_contains($current_uri, 'laporan_revisi.php') ? 'active' : '' ?>">
                         <i class="ti-comments"></i> Laporan Saran & Revisi
                     </a>
                 </li>
