@@ -16,6 +16,20 @@ if ($id <= 0) {
     exit;
 }
 
+// Cek apakah id_rapat sudah ada di tabel arsiprapat
+$stmt = $conn->prepare("SELECT COUNT(*) FROM arsiprapat WHERE id_rapat = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$stmt->bind_result($count);
+$stmt->fetch();
+$stmt->close();
+
+if ($count > 0) {
+    // Jika sudah ada di arsiprapat, blokir penghapusan
+    header("Location: jadwal.php?msg=fk_blocked&obj=jadwalrapat");
+    exit;
+}
+
 // Hapus data berdasarkan ID
 $stmt = $conn->prepare("DELETE FROM jadwalrapat WHERE id = ?");
 $stmt->bind_param("i", $id);
