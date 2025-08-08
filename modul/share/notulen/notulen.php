@@ -102,9 +102,9 @@ $result = $conn->query($query);
                                             <td colspan="6" class="text-center text-muted">Belum ada notulen.</td>
                                         </tr>
                                     <?php endif; ?>
-
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -119,9 +119,16 @@ $result = $conn->query($query);
     <script src="<?= BASE_URL ?>/assets/js/sweetalert2.all.min.js"></script>
 
     <script>
-        // Inisialisasi DataTables
         $(document).ready(function() {
-            $('#tabel-notulen').DataTable({
+            // Cek jumlah baris dalam <tbody>
+            const rowCount = $('#tabel-notulen tbody tr').length;
+            if (rowCount === 0) {
+                const headerCount = $('#tabel-notulen thead th').length; // Hitung jumlah kolom di header
+                // Jika tidak ada data, tampilkan baris kosong dengan colspan sesuai
+                $('#tabel-notulen tbody').html('<tr><td colspan="' + headerCount + '" class="text-center text-muted">Belum ada notulen.</td></tr>');
+            }
+            // Inisialisasi DataTables setelah memastikan baris kosong ditambahkan
+            var table = $('#tabel-notulen').DataTable({
                 language: {
                     lengthMenu: "Tampilkan _MENU_ notulen per halaman",
                     zeroRecords: "Tidak ada notulen ditemukan",
@@ -137,16 +144,11 @@ $result = $conn->query($query);
                     }
                 }
             });
-
+            // Sesuaikan tampilan DataTables
+            table.columns.adjust().draw();
             // Sisipkan tombol tambah ke area filter
             $('#tombolTambahNotulen').appendTo('#tabel-notulen_wrapper .dataTables_filter').addClass('ms-3');
             $('#tabel-notulen_wrapper .dataTables_filter').addClass('d-flex align-items-center justify-content-between mb-3');
-
-            const headerCount = $('#tabel-notulen thead th').length;
-            const colspanCount = $('#tabel-notulen tbody td[colspan]').attr('colspan');
-            if (parseInt(headerCount) !== parseInt(colspanCount)) {
-                console.warn("⚠️ Jumlah kolom dan colspan tidak cocok!");
-            }
         });
     </script>
 </body>
